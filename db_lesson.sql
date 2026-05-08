@@ -117,4 +117,3 @@ select people.name, people.department_id, reports.content
 from people
 left join reports on people.person_id = reports.person_id
 where reports.report_id is null;
-
