@@ -19,18 +19,18 @@ VALUES
 ('人事'),
 ('情報システム');
 
-INSERT INTO people (name, department_id)
+INSERT INTO people (name, email, department_id, age, gender)
 VALUES
-('佐藤 健二', 1),
-('鈴木 一郎', 1),
-('高橋 花子', 1),
-('田中 太郎', 2),
-('伊藤 結衣', 2),
-('渡辺 裕太', 2),
-('山本 明美', 2),
-('中村 直樹', 3),
-('小林 誠', 4),
-('加藤 舞', 5);
+('佐藤 健二', 'satou@gizumo.jp', 1, 30, 1),
+('鈴木 一郎', 'suzuki_ichi@gizumo.jp', 1, 45, 1),
+('高橋 花子', 'takahashi@gizumo.jp', 1, 28, 2),
+('田中 太郎', 'tanakatarou@gizumo.jp', 2, 35, 1),
+('伊藤 結衣', 'itou@gizumo.jp', 2, 24, 2),
+('渡辺 裕太', 'watanabe@gizumo.jp', 2, 29, 1),
+('山本 明美', 'yamamoto@gizumo.jp', 2, 32, 2),
+('中村 直樹', 'nakamura@gizumo.jp', 3, 40, 1),
+('小林 誠', 'kobayasimakoto@gizumo.jp', 4, 38, 1),
+('加藤 舞', 'katou@gizumo.jp', 5, 26, 2);
 
 INSERT INTO reports (person_id, content)
 VALUES
@@ -53,17 +53,6 @@ update people set department_id = 4 where person_id = 4;
 update people set department_id = 5 where person_id = 6;
 
 Q5
-update people set gender = 1, age = 30 where person_id = 7;
-update people set gender = 1, age = 45 where person_id = 8;
-update people set gender = 2, age = 28 where person_id = 9;
-update people set gender = 1, age = 35 where person_id = 10;
-update people set gender = 2, age = 24 where person_id = 11;
-update people set gender = 1, age = 29 where person_id = 12;
-update people set gender = 2, age = 32 where person_id = 13;
-update people set gender = 1, age = 40 where person_id = 14;
-update people set gender = 1, age = 38 where person_id = 15;
-update people set gender = 2, age = 26 where person_id = 16;
-
 select name, age 
 from people
 where gender = 1
@@ -107,9 +96,10 @@ where department_id = 2 and gender = 2;
 
 Q10
 名前と部署名とその人が提出した日報の内容を同時に取得してください。（日報を提出していない人は含めない）
-select people.name, people.department_id, reports.content
+select people.name, departments.name, reports.content
 from people
-inner join reports on people.person_id = reports.person_id;
+inner join reports on people.person_id = reports.person_id
+inner join departments on people.person_id = departments.department_id;
 
 Q11
 日報を一つも提出していない人の名前一覧を取得してください。
