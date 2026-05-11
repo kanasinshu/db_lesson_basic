@@ -60,13 +60,13 @@ order by age desc;
 
 Q6
 SELECT
-  `name`, `email`, `age`
+  name, email, age
 FROM
-  `people`
+  people
 WHERE
-  `department_id` = 1
+  department_id = 1
 ORDER BY
-  `created_at`;
+  created_at;
 
 意味
 名前、メール、年齢のカラム（列）を選択
@@ -99,11 +99,11 @@ Q10
 select people.name, departments.name, reports.content
 from people
 inner join reports on people.person_id = reports.person_id
-inner join departments on people.person_id = departments.department_id;
+inner join departments on people.department_id = departments.department_id;
 
 Q11
 日報を一つも提出していない人の名前一覧を取得してください。
-select people.name, people.department_id, reports.content
+select people.name, reports.content
 from people
 left join reports on people.person_id = reports.person_id
 where reports.report_id is null;
